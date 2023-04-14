@@ -6,7 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-     
+      fontFamily:{
+        'bodyFont':['Mitr', 'cursive'   ],
+        
+      }
     },
   },
   plugins: [],
