@@ -6,7 +6,7 @@ function Login() {
             <div class="container flex flex-col min-h-screen px-6 py-12 mx-auto">
                 <div class="flex-1 lg:flex lg:items-center lg:-mx-6">
                     <div class="text-white lg:w-1/2 lg:mx-6">
-                        <h1 class="text-2xl font-semibold capitalize lg:text-3xl">Geleceğim Uygulamasına Hoşgeldiniz</h1>
+                        <h1 class="text-2xl font-semibold capitalize lg:text-3xl"> <span class="text-sky-500">GEL</span>işim+  Uygulamasına Hoşgeldiniz</h1>
 
                         <p class="max-w-xl mt-6">Uygulamamız ile ilgili sorularınız olursa lütfen bize ulaşın.</p>
 
