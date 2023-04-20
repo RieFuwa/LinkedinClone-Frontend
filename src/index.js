@@ -6,11 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import Login from './components/login/Login';
 import Register from './components/login/Register';
 import Error from './pages/Error';
+import CreateCompany from './components/company/CreateCompany';
+import Navbar from './layouts/Navbar';
+import Footer from './layouts/Footer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-<App></App>
+ <App></App>
   </React.StrictMode>
 );
 

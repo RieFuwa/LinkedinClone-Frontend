@@ -8,7 +8,7 @@ export default function CreatePost(props) {
     return (
         <>
             <button
-                class="mx-6 w-full flex-grow h-16 t rounded-full border-2 text-left text-lg border-white focus:ring-blue-500 focus:border-blue-500 text-white"
+                class=" w-full flex-grow h-16 t rounded-full border-2 text-left text-lg border-white  text-white"
                 type="button"
                 onClick={() => setShowModal(true)}
             >

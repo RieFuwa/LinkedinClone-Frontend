@@ -4,7 +4,7 @@ import { FaPlus, FaBriefcase, FaHeart, FaCommentDots, FaStar } from "react-icons
 function UserProfileCard() {
     return (
         <div class=' '>
-            <div class="w-60   shadow-white sm:text-sm lg:w-64 lg:text-md  sm:w-40 max-w-sm overflow-hidden bg-white rounded-lg shadow-sm dark:bg-gray-800">
+            <div class="w-60 mt-20 shadow-white sm:text-sm lg:w-64 lg:text-md  sm:w-40 max-w-sm overflow-hidden bg-white rounded-lg shadow-sm dark:bg-gray-800">
                 <img class="object-cover object-center w-full h-32" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar" />
                 <div class="flex items-center px-6 py-3 bg-gray-900">
                     <h1 class=" text-md font-semibold text-white">Bedirhan Kabataş</h1>
@@ -21,7 +21,7 @@ function UserProfileCard() {
                     </div>
                 </div>
             </div>
-            <div class="w-60 fixed sm:w-40 shadow-white lg:w-64 lg:text-md  sm:text-sm mt-10  max-w-sm   bg-white rounded-lg shadow-sm dark:bg-gray-800">
+            <div class="w-60  sticky  top-28  sm:w-40 shadow-white lg:w-64 lg:text-md  sm:text-sm mt-10  max-w-sm   bg-white rounded-lg shadow-sm dark:bg-gray-800">
                 <div class="flex items-center rounded-lg px-6 py-3 bg-gray-900">
                     <h1 class=" text-md font-semibold text-white">Sizin İçin</h1>
                 </div>
