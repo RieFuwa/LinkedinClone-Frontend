@@ -18,12 +18,12 @@ export default function Navbar() {
         <Disclosure as="nav" className="bg-gray-800 font-bodyFont">
             {({ open }) => (
                 <>
-                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-5">
+                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
                         <div className="relative flex h-20 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                            
                             </div>
-                            <div className="flex text-lg text-white flex-shrink-0 items-center">       
+                            <div className="flex text-2xl text-white flex-shrink-0 items-center">       
                             <span class="text-sky-500">GEL</span>işim+ 
                                 </div>
                             <div className="flex  flex-1 items-center justify-center sm:items-stretch sm:justify-end">
