@@ -15,20 +15,20 @@ function classNames(...classes) {
 
 export default function Navbar() {
     return (
-        
-        <Disclosure as="nav" className="bg-gray-800 mt-0 fixed w-full z-10 font-bodyFont">
+
+        <Disclosure as="nav" className="bg-gray-900 mt-0 fixed w-full z-10 font-bodyFont">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
                         <div className="relative flex h-20 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                           
+
                             </div>
-                            <div className="flex text-2xl text-white flex-shrink-0 items-center">       
-                            <span class="text-sky-500">GEL</span>işim+ 
-                                </div>
+                            <div className="flex text-2xl text-white flex-shrink-0 items-center cursor-pointer">
+                                <span class="text-sky-500">GEL</span>işim+
+                            </div>
                             <div className="flex  flex-1 items-center justify-center sm:items-stretch sm:justify-end">
-                               
+
                                 <div className="hidden  sm:ml-6 sm:block">
                                     <div className="flex  space-x-4">
                                         {navigation.map((item) => (
@@ -48,15 +48,11 @@ export default function Navbar() {
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button
-                                    type="button"
-                                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                >
-                                </button>
+
 
                                 <Menu as="div" className="relative ml-3">
                                     <div>
-                                        <button class="flex text-sm items-center px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-100">
+                                        <button class="flex text-sm items-center px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-cyan-300 focus:ring-opacity-100">
                                             <span class="mx-1">Giriş</span>
                                         </button>
                                         {/* <Menu.Button className="flex rounded-full bg-gray-800  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
