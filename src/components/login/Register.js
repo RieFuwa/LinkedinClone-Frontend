@@ -1,4 +1,6 @@
 import React from 'react'
+import { FaWindowClose } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Register() {
     return (
@@ -71,11 +73,12 @@ function Register() {
                             </div>
                         </div>
                     </div>
-
                     <div class=" lg:w-1/2 lg:mx-8">
                         <div class="w-full px-8 py-10 mx-auto overflow-hidden bg-white shadow-2xl rounded-xl dark:bg-gray-900 lg:max-w-xl">
-                            <h1 class="text-xl font-medium text-gray-700 dark:text-gray-200">Kayıt Ekranına Hoşgeldiniz</h1>
-
+                            <div class="flex align-middle justify-between">
+                                <h1 class="text-xl font-medium text-gray-700 dark:text-gray-200">Kayıt Ekranına Hoşgeldiniz</h1>
+                                <Link to="/"> <FaWindowClose class="text-xl text-white"></FaWindowClose></Link>
+                            </div>
                             <form class="mt-4">
                                 <div class="flex-1">
                                     <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Adınız</label>

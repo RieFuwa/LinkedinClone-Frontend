@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function ResponseCard() {
     return (
-        <div class=" mt-2 px-2 py-4">
+        <div class=" mt-2 px-2 py-4 font-bodyFont ">
 
             <div class="bg-white dark:bg-gray-900 w-96 shadow shadow-gray-500 mx-auto rounded-xl p-4">
                 <p class="row text-gray-600 text-base overflow-hidden  dark:text-white">

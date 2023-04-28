@@ -3,7 +3,7 @@ import { FaPlus, FaBriefcase, FaHeart, FaCommentDots, FaStar } from "react-icons
 
 function AdCard() {
     return (
-        <div class='hidden md:block'>
+        <div class='hidden md:block font-bodyFont '>
             <div class="sm:text-sm mt-20 shadow-white lg:w-64 lg:text-md  sm:w-40 max-w-sm overflow-hidden bg-white rounded-lg shadow-sm dark:bg-gray-800">
                 <img class="object-cover object-center w-full h-32" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar" />
                 <div class="flex items-center px-6 py-3 bg-gray-900">

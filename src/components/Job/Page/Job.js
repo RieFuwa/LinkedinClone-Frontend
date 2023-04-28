@@ -3,7 +3,7 @@ import JobPostingCard from '../Card/JobPostingCard'
 
 function Job() {
     return (
-        <div className="flex mx-auto max-w-7xl py-12 sm:px-6 lg:px-5  ">
+        <div className="flex mx-auto max-w-7xl font-bodyFont  py-16 sm:px-6 lg:px-5  ">
             <div class="p-16 flex-grow  w-full  text-white">
 
                 <div class="flex justify-between ">

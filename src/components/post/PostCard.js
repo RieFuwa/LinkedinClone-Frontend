@@ -5,7 +5,7 @@ import ViewResponseCard from '../ResponsePost/ViewResponseCard';
 
 function PostCard() {
     return (
-        <div class="flex-grow  w-full ">
+        <div class="flex-grow  font-bodyFont  w-full ">
             <section class=" text-gray-600 body-font">
                 <div class="mt-5 ">
                     <div class=" flex  w-full text-white  p-1 ">

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
     return (
         <div className=" text-white font-bodyFont">
@@ -14,7 +16,7 @@ function Footer() {
                                 </button>
                             </div>
                             <div className="mt-4 text-lg">
-                                <a href="#">
+                                <a>
                                 </a>
                             </div>
 
@@ -24,8 +26,10 @@ function Footer() {
                             <p class="font-semibold text-gray-800 dark:text-white"><span class="text-sky-500">GEL</span>işim+ </p>
 
                             <div class="flex flex-col items-start mt-5 space-y-2">
-                                <a href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Ana Sayfa</a>
-                                <a href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">İş İlanları</a>
+                                <Link to="/">
+                                    <button class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Ana Sayfa</button></Link>
+                                <Link to="jobPanel">
+                                    <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">İş İlanları</button></Link>
                             </div>
                         </div>
 
@@ -33,16 +37,20 @@ function Footer() {
                             <p class="font-semibold text-gray-800 dark:text-white"><span class="text-sky-500">GEL</span>işim+ Ticaret</p>
 
                             <div class="flex flex-col items-start mt-5 space-y-2">
-                                <a href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Şirketinizi Oluşturun+</a>
-                                <a href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Gizlilik Politikası</a>
+                                <Link to="/createCompany">
+                                    <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Şirketinizi Oluşturun+</button>   </Link>
+                                <Link>
+                                    <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Gizlilik Politikası</button> </Link>
                             </div>
                         </div>
                         <div>
                             <p class="font-semibold text-gray-800 dark:text-white">İletişim</p>
 
                             <div class="flex flex-col items-start mt-5 space-y-2">
-                                <a href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">0555 555 55 55</a>
-                                <a href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">İstanbul-Türkiye</a>
+                                <Link>
+                                    <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">0555 555 55 55</button></Link>
+                                <Link>
+                                    <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">İstanbul-Türkiye</button></Link>
                             </div>
                         </div>
                     </div>

@@ -6,8 +6,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import Footer from './layouts/Footer';
-import Navbar from './layouts/Navbar';
 
 import Home from './components/Home/Page/Home';
 import Login from './components/Login/Login';
@@ -18,6 +16,10 @@ import AdminPanel from './components/Admin/Page/AdminPanel';
 import User from './components/User/Page/User';
 import Job from './components/Job/Page/Job';
 import Error from './pages/Error';
+import Navbar from './components/layouts/Navbar';
+import Footer from './components/layouts/Footer';
+import UserApplyJob from './components/User/Page/UserApplyJob';
+import Company from './components/Company/Page/Company';
 
 //min-h-full 
 function App() {
@@ -37,8 +39,11 @@ function App() {
             <Route exact path="/" element={<Home></Home>}></Route>
             <Route exact path="/userProfile" element={<User></User>}></Route>
             <Route exact path="/jobPanel" element={<Job></Job>}></Route>
+            <Route exact path="/userApplyJob" element={<UserApplyJob></UserApplyJob>}></Route>
+            <Route exact path="/companyProfile" element={<Company></Company>}></Route>
+
           </Route>
-          
+
           <Route exact path="/login" element={<Login></Login>}></Route>
           <Route exact path="/register" element={<Register></Register>}></Route>
           <Route exact path="/createCompany" element={<CreateCompany></CreateCompany>}></Route>

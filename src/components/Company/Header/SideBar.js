@@ -2,7 +2,7 @@ import React from 'react'
 
 function SideBar() {
     return (
-        <div><aside class="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+        <div><aside class="flex flex-col  w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
             <div className="flex text-2xl  text-center justify-center text-white flex-shrink-0 items-center">
                 <span class="text-sky-500">GEL</span>işim+ Şirket
             </div>

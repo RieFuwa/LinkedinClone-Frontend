@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function User() {
     return (
@@ -30,16 +31,20 @@ function User() {
                             </div>
 
                             <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+                                <Link>
                                 <button
-                                    class="text-white py-2 px-4  rounded-lg border-white border-2 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
-                                >
-                                    Aktiviteler
-                                </button>
-                                <button
-                                    class="text-white py-2 px-4  rounded-lg border-white border-2 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
-                                >
-                                    İş Başvurularım
-                                </button>
+                                        class="text-white py-2 px-4  rounded-lg border-white border-2 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                                        >
+                                    Başvurularım
+                                </button></Link>
+                                <Link to="/userApplyJob">
+                                    <button
+                                        class="text-white py-2 px-4  rounded-lg border-white border-2 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                                    >
+                                        Başvurularım
+                                    </button>
+                                </Link>
+
                             </div>
                         </div>
                         <div class="mt-20 text-center border-b pb-12">

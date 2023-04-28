@@ -1,19 +1,26 @@
 import React from 'react'
 import { FaPlus, FaBriefcase, FaHeart, FaCommentDots, FaStar } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 function UserProfileCard() {
     return (
-        <div class=' '>
+        <div class=' font-bodyFont '>
             <div class="w-60 mt-20 shadow-white sm:text-sm lg:w-64 lg:text-md  sm:w-40 max-w-sm overflow-hidden bg-white rounded-lg shadow-sm dark:bg-gray-800">
                 <img class="object-cover object-center w-full h-32" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="avatar" />
                 <div class="flex items-center px-6 py-3 bg-gray-900">
-                    <h1 class=" text-md font-semibold text-white">Bedirhan Kabataş</h1>
+                    <Link to="/userProfile">
+                        <h1 class=" text-md font-semibold text-white">Bedirhan Kabataş</h1>
+                    </Link>
                 </div>
                 <div class="px-6 py-4">
                     <p class="py-2 text-gray-700 dark:text-gray-400">Full Stack maker & UI / UX Designer , love hip hop music Author of Building UI.</p>
                     <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                        <FaBriefcase class="text-lg"></FaBriefcase>
-                        <h1 class="px-2 text-sm">Başvurularım</h1>
+                      
+                            <FaBriefcase class="text-lg"></FaBriefcase>
+                            <Link to="/userApplyJob">
+                            <h1 class="px-2 text-sm">Başvurularım</h1>
+                        </Link>
+
                     </div>
                     <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
                         <FaPlus class="text-lg"></FaPlus>

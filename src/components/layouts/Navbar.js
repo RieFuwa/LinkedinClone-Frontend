@@ -1,12 +1,13 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
 
 const navigation = [
-    { name: 'Ana sayfa', href: '#', current: false },
-    { name: 'İş İlanları', href: '#', current: false },
-    { name: 'Bildirimler', href: '#', current: false },
-    { name: 'Şirket Sayfası Oluşturun+', href: '#', current: false },
+    { name: 'Ana sayfa', to: '/', current: false },
+    { name: 'İş İlanları', to: '/jobPanel', current: false },
+    { name: 'Bildirimler', to: '/#', current: false },
+    { name: 'Şirket Sayfası Oluşturun+', to: '/createCompany', current: false },
 ]
 
 function classNames(...classes) {
@@ -32,17 +33,17 @@ export default function Navbar() {
                                 <div className="hidden  sm:ml-6 sm:block">
                                     <div className="flex  space-x-4">
                                         {navigation.map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className={classNames(
-                                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
-                                            >
-                                                {item.name}
-                                            </a>
+                                            <Link to={item.to}>
+                                                <button
+                                                    key={item.name}
+                                                    className={classNames(
+                                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                        'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
+                                                    )}
+                                                    aria-current={item.current ? 'page' : undefined}
+                                                >
+                                                    {item.name}
+                                                </button></Link>
                                         ))}
                                     </div>
                                 </div>
@@ -52,9 +53,10 @@ export default function Navbar() {
 
                                 <Menu as="div" className="relative ml-3">
                                     <div>
-                                        <button class="flex text-sm items-center px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-cyan-300 focus:ring-opacity-100">
-                                            <span class="mx-1">Giriş</span>
-                                        </button>
+                                        <Link to="/login">
+                                            <button class="flex text-sm items-center px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-cyan-300 focus:ring-opacity-100">
+                                                <span class="mx-1">Giriş</span>
+                                            </button></Link>
                                         {/* <Menu.Button className="flex rounded-full bg-gray-800  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="sr-only">Open user menu</span>
                                             <img
@@ -76,12 +78,14 @@ export default function Navbar() {
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-md text-gray-700')}
-                                                    >
-                                                        Profilim
-                                                    </a>
+                                                    <Link to="/userProfile">
+                                                        <button
+                                                            href="#"
+                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-md text-gray-700')}
+                                                        >
+                                                            Profilim
+                                                        </button>
+                                                    </Link>
                                                 )}
                                             </Menu.Item>
                                             <Menu.Item>

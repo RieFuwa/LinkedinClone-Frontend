@@ -1,13 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function JobPostingCard() {
     return (
-        <div class="">
+        <div class="font-bodyFont ">
             <div class=" flex w-full text-white  mt-4">
                 <div class="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3">
                     <div class="m-2">
                         <div
-                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-95 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
+                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-105 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
                         >
                             <h3 class="text-3xl font-bold text-white sm:text-5xl">Aselsan</h3>
                             <p className="mt-4 text-sm text-gray-300">
@@ -23,7 +24,7 @@ function JobPostingCard() {
 
                     <div class="m-2">
                         <div
-                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-95 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
+                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-105 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
 
                         >
 
@@ -33,8 +34,10 @@ function JobPostingCard() {
                             </p>
                             <div class="flex justify-between">
                                 <p class="text-indigo-400 mt-5  hover:underline cursor-pointer">İlan Detayı</p>
+<Link to="/companyProfile">
+<button class="text-indigo-400 mt-5 hover:underline cursor-pointer">Şirket Sayfası</button>
 
-                                <p class="text-indigo-400 mt-5 hover:underline cursor-pointer">Şirket Sayfası</p>
+</Link>
                             </div>
 
                         </div>
@@ -43,7 +46,7 @@ function JobPostingCard() {
 
                     <div class="m-2">
                         <div
-                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-95 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
+                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-105 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
 
                         >
 
@@ -62,7 +65,7 @@ function JobPostingCard() {
                     </div>
                     <div class="m-2">
                         <div
-                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-95 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
+                            className="block  rounded-xl border hover:bg-gray-800 duration-200 hover:scale-105 border-gray-800 bg-gray-900 p-4 shadow-sm shadow-gray-600 sm:p-6 lg:p-8"
 
                         >
 
