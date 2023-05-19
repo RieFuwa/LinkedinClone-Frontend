@@ -1,43 +1,128 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import JobPostingCard from '../Card/JobPostingCard'
+import axios from 'axios';
+import { FaInfoCircle } from 'react-icons/fa';
+import { sleep } from '../../ServiceComponent/Sleep/Sleep';
 
 function Job() {
-    return (
-        <div className="flex mx-auto max-w-7xl font-bodyFont  py-16 sm:px-6 lg:px-5  ">
-            <div class="p-16 flex-grow  w-full  text-white">
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [job, setJob] = useState([]);
+    const [searchText, setSearchText] = useState("");
 
-                <div class="flex justify-between ">
-                    <div class="relative mx-3 w-full sm:w40">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-                                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </span>
-                        <input type="text" class="w-full py-1.5 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Search" />
-                    </div>
-                    <div class="relative mx-3 w-96 sm:w40 ">
-                        <select
-                            // value={title.postTypeId}
-                            // id={title.postTypeId}
-                            // onChange={(e) => onInputChange(e)}
-                            class="w-full py-1.5 pl-10 pr-4  appearance-none text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-                            // name="postTypeId"
-                            placeholder="baslik turu seciniz"
-                            required
-                        >
-                            <option selected>İlan Türüne göre</option>
-                            <option value={1}>spor</option>
-                            <option value={2}>siyaset</option>
-                            <option value={3}>tarih</option>
-                            <option value={4}>ekonomi</option>
-                            <option value={5}>müzik</option>
-                            <option value={6}>teknoloji</option>
-                        </select>
-                    </div>
+    let inputHandler = (e) => {
+        var lowerCase = e.target.value.toLowerCase();
+        setSearchText(lowerCase);
+
+    };
+
+
+    const getAllJob = () => {
+        axios
+            .get("/job/getAll")
+            .then(function (response) {
+                return response.data;
+            })
+            .then(
+                async (result) => {
+                    await sleep(500);
+                    setIsLoaded(true);
+                    setJob(result);
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            );
+    };
+
+    useEffect(() => {
+        getAllJob();
+    }, []);
+
+
+    if (error) {
+        return (
+            <div className=" text-white flex max-w-3xl py-6 sm:px-6 lg:px-5 mx-56 ">
+                <div class=" mt-4">
+                    <p class=" flex text-4xl">
+                        <FaInfoCircle></FaInfoCircle>
+                        Bilinmeyen bir hata söz konusu...
+                        Lütfen destek ile iletişime geçin.
+                    </p>
                 </div>
-                <JobPostingCard></JobPostingCard>
-            </div></div>
-    )
+            </div>
+        );
+    } else {
+        return (
+            <div className="flex mx-auto max-w-7xl font-bodyFont  py-16 sm:px-6 lg:px-5  ">
+                <div class="p-16 flex-grow  w-full  text-white">
+
+                    <div class="flex justify-between ">
+                        <div class="relative mx-3 w-full sm:w40">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </span>
+                            <input value={searchText} onChange={inputHandler} type="text" class="w-full py-1.5 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Adrese Göre Ara" />
+                        </div>
+                        <div class="relative mx-3 w-96 sm:w40 ">
+                            <select
+                                // value={title.postTypeId}
+                                // id={title.postTypeId}
+                                // onChange={(e) => onInputChange(e)}
+                                class="w-full py-1.5 pl-10 pr-4  appearance-none text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                                // name="postTypeId"
+                                placeholder="baslik turu seciniz"
+                                required
+                            >
+                                <option selected>İlan Türüne göre</option>
+                                <option value={1}>spor</option>
+                                <option value={2}>siyaset</option>
+                                <option value={3}>tarih</option>
+                                <option value={4}>ekonomi</option>
+                                <option value={5}>müzik</option>
+                                <option value={6}>teknoloji</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {isLoaded ? (
+
+                        <div class=" flex w-full text-white  mt-4">
+                            <div class="grid grid-cols-3 w-full sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3">
+                                
+                               
+                                {job
+                                    .filter((key) => {
+                                        if (searchText === "") {
+                                            return job;
+                                        }
+                                        if (
+                                            (key.companyAddress || "")
+                                                .toLowerCase()
+                                                .includes(searchText.toLowerCase())
+                                        ) {
+                                            return job;
+                                        }
+                                    }).
+                                    map((key, index) => (
+                                        <JobPostingCard key={index} id={key.id} companyAddress={key.companyAddress} companyId={key.companyId} companyName={key.companyName} createDate={key.createDate} jobDetails={key.jobDetails} ></JobPostingCard>))}
+                            </div>
+                        </div>) : (
+                        <div className="flex justify-center ">
+                            <div class=" absolute transform sm:m-2 lg:m-12 ">
+                                <div class="border-t-transparent  border-solid animate-spin  rounded-full border-blue-400 border-8 h-32 w-32">
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                </div>
+            </div>
+        )
+    }
 }
 
 export default Job

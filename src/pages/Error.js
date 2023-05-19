@@ -1,8 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Error() {
     return (
-
         < div className="grid h-screen px-4 bg-white place-content-center dark:bg-gray-900" >
             <div className="text-center">
                 <svg
@@ -46,9 +46,9 @@ function Error() {
                     Tıkladığınız bağlantı bozuk olablir veya sayfa kaldırılmış olabilir lütfen daha sonra tekrar deneyiniz.
                 </p>
 
-                <button class=" text-sm items-center mt-10 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-100">
+                <Link to={"/"}> <button class=" text-sm items-center mt-10 px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-100">
                     <span class="mx-1">{"<-- "}Ana Menü</span>
-                </button>
+                </button></Link>
             </div>
 
         </div >

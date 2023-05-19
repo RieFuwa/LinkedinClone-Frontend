@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <div className=" text-white font-bodyFont">
-            <footer class="bg-gray-900 dark:bg-gray-900">
-                <div class="container px-6 py-12 mx-auto">
+        <div className=" text-white sticky top-[100vh]  font-bodyFont align-bottom ">
+            <footer class="bg-gray-900 dark:bg-gray-900 ">
+                <div class="container px-6 py-12 mt-4 mx-auto">
                     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-5">
                         <div class="sm:col-span-2">
                             <h1 class="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white"> <span class="text-sky-500">GEL</span>işim+
@@ -34,11 +34,14 @@ function Footer() {
                         </div>
 
                         <div>
-                            <p class="font-semibold text-gray-800 dark:text-white"><span class="text-sky-500">GEL</span>işim+ Ticaret</p>
+                            <p class="font-semibold text-gray-800 dark:text-white"><span class="text-pink-500">GEL</span>işim+ Ticaret</p>
 
                             <div class="flex flex-col items-start mt-5 space-y-2">
-                                <Link to="/createCompany">
-                                    <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Şirketinizi Oluşturun+</button>   </Link>
+                                {localStorage.getItem("signedCompanyId") == null ?
+                                    <Link to="/createCompany">
+                                        <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Şirketinizi Oluşturun+</button>   </Link>
+                                    : <Link to={{ pathname: "/companyPanel" }}>
+                                        <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Şirketinize Gidin</button>   </Link>}
                                 <Link>
                                     <button href="#" class="text-gray-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-sky-500 hover:underline hover:text-sky-500">Gizlilik Politikası</button> </Link>
                             </div>

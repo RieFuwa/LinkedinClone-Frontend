@@ -1,8 +1,100 @@
 import React from 'react'
 import { FaWindowClose } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Register() {
+    const [isSend, setIsSend] = useState(false);
+    let navigate = useNavigate();
+
+    const [addRole, setAddRole] = useState({
+        userId: "",
+        roleId: "",
+    });
+
+    const [user, setUser] = useState({
+        userName: "",
+        userMail: "",
+        userPassword: "",
+        confirmPassword: "",
+        userUniversity: "",
+        userAddress: "",
+        userDetail: "",
+        isVerified: false,
+    });
+
+    const [formError, setFormError] = useState({
+        userName: "",
+        userMail: "",
+        userPassword: "",
+        confirmPassword: "",
+        userUniversity: "",
+        userAddress: "",
+        userDetail: "",
+    });
+
+    const { userName, userMail, userPassword, confirmPassword, userUniversity, userAddress, userDetail } = user;
+
+    const onInputChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+        setIsSend(false);
+    };
+
+    const validateFormInput = async (event) => {
+        event.preventDefault();
+        let inputError = {
+            userName: "",
+            userMail: "",
+            userPassword: "",
+            confirmPassword: "",
+        };
+
+        if (user.confirmPassword !== user.userPassword) {
+            setFormError({
+                ...inputError,
+                confirmPassword: "Girdiğiniz şifreler uyuşmamaktadır.",
+            });
+            return;
+        }
+        if (user.userPassword.length <= 6) {
+            setFormError({
+                ...inputError,
+                userPassword: "Şifreniz 6 basamaktan büyük olmalıdır.",
+            });
+            return;
+        }
+        setFormError(inputError);
+        await onSubmit();
+        await addRoleToUser();
+        navigate("/login");
+    };
+    const addRoleToUser = async (e) => {
+        await axios
+            .post("/role/addRoleToUser", {
+                userId: localStorage.getItem("signedUserId"),
+                roleId: 1,
+            })
+            .then(function (response) {
+                localStorage.setItem("ROLE_USER",true)
+                console.log(response);
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+
+    const onSubmit = async (e) => {
+        await axios.post("/user/add", user).then(function (response) {
+            localStorage.setItem("signedUserId", response.data.userId);
+            localStorage.setItem("signedUserName", response.data.userName);
+
+
+        });
+        setIsSend(true);
+    };
     return (
         <div><section class="min-h-screen font-bodyFont  bg-gradient-to-r from-blue-600 via-blue-800 to-blue-900 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 ">
             <div class="container flex flex-col min-h-screen px-6 py-12 mx-auto">
@@ -79,47 +171,113 @@ function Register() {
                                 <h1 class="text-xl font-medium text-gray-700 dark:text-gray-200">Kayıt Ekranına Hoşgeldiniz</h1>
                                 <Link to="/"> <FaWindowClose class="text-xl text-white"></FaWindowClose></Link>
                             </div>
-                            <form class="mt-4">
+                            <form
+                                onSubmit={validateFormInput}
+                                class="mt-4">
                                 <div class="flex-1">
                                     <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Adınız</label>
-                                    <input type="text" required class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                    <input
+                                        onChange={(e) => onInputChange(e)}
+                                        required
+                                        type="text"
+                                        id="userName"
+                                        value={userName}
+                                        name="userName"
+                                        maxLength={25}
+                                        class="block w-full  px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
                                 <div class="flex-1 mt-2">
                                     <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Adresiniz</label>
-                                    <input type="email" required placeholder="example@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                    <input
+                                        onChange={(e) => onInputChange(e)}
+                                        required
+                                        type="email"
+                                        id="userMail"
+                                        maxLength={30}
+                                        name="userMail"
+                                        value={userMail}
+                                        placeholder="example@example.com"
+                                        class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
                                 <div className='flex mt-2 gap-4 mb-2'>
                                     <div class="flex-1">
                                         <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Şifreniz</label>
-                                        <input type="password" required class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                        <input
+                                            onChange={(e) => onInputChange(e)}
+                                            required
+                                            type="password"
+                                            id="userPassword"
+                                            maxLength={20}
+                                            name="userPassword"
+                                            value={userPassword}
+                                            class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     </div>
                                     <div class="flex-1 ">
                                         <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Şifre Tekrar </label>
-                                        <input type="password" required class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                        <input
+                                            onChange={(e) => onInputChange(e)}
+                                            required
+                                            type="password"
+                                            maxLength={20}
+                                            id="confirmPassword"
+                                            name="confirmPassword"
+                                            value={confirmPassword}
+                                            class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     </div>
                                 </div>
                                 <div className='flex mt-2 gap-4 mb-2'>
                                     <div class="flex-1">
                                         <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Okulunuz</label>
-                                        <input type="text" maxLength={30} required class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                        <input
+                                            onChange={(e) => onInputChange(e)}
+                                            required
+                                            type="text"
+                                            id="userUniversity"
+                                            value={userUniversity}
+                                            name="userUniversity"
+                                            maxLength={25}
+                                            class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     </div>
                                     <div class="flex-1">
                                         <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Şehir</label>
-                                        <input type="text" maxLength={15} required class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                        <input
+                                            onChange={(e) => onInputChange(e)}
+                                            required
+                                            type="text"
+                                            id="userAddress"
+                                            value={userAddress}
+                                            name="userAddress"
+                                            maxLength={25}
+                                            class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     </div>
 
                                 </div>
                                 <div class="flex-1">
                                     <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Kariyer Özetin</label>
-                                    <textarea type="text" maxLength={300} required class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                    <textarea
+                                        onChange={(e) => onInputChange(e)}
+                                        required
+                                        type="text"
+                                        id="userDetail"
+                                        value={userDetail}
+                                        name="userDetail"
+                                        maxLength={300}
+                                        class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                 </div>
-
+                                <p class="text-red-500 font-semibold text-base">
+                                    {formError.userPassword}
+                                </p>
+                                <p class="text-red-500 font-semibold text-base">
+                                    {formError.confirmPassword}
+                                </p>
                                 {/* <div class="w-full mt-6">
                                     <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Message</label>
                                     <textarea class="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Message"></textarea>
                                 </div> */}
 
-                                <button class="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
+                                <button
+                                    type="submit"
+                                    class="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
                                     Kayıt Ol
                                 </button>
                             </form>

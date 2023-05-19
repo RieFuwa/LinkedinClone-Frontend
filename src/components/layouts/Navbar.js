@@ -1,13 +1,19 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const navigation = [
     { name: 'Ana sayfa', to: '/', current: false },
     { name: 'İş İlanları', to: '/jobPanel', current: false },
-    { name: 'Bildirimler', to: '/#', current: false },
+    // { name: 'Bildirimler', to: '/#', current: false },
     { name: 'Şirket Sayfası Oluşturun+', to: '/createCompany', current: false },
+]
+const navigationTwo = [
+    { name: 'Ana sayfa', to: '/', current: false },
+    { name: 'İş İlanları', to: '/jobPanel', current: false },
+    // { name: 'Bildirimler', to: '/#', current: false },
+    { name: 'Şirket Paneli', to: '/companyPanel', current: false },
 ]
 
 function classNames(...classes) {
@@ -15,8 +21,18 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-    return (
 
+    var navigate = useNavigate();
+
+    const onLogoutClicked = () => {
+        localStorage.removeItem("signedUserId");
+        localStorage.removeItem("signedUserName");
+        localStorage.removeItem("signedCompanyId");
+        window.location.reload();
+        navigate("/");
+    };
+
+    return (
         <Disclosure as="nav" className="bg-gray-900 mt-0 fixed w-full z-10 font-bodyFont">
             {({ open }) => (
                 <>
@@ -32,19 +48,36 @@ export default function Navbar() {
 
                                 <div className="hidden  sm:ml-6 sm:block">
                                     <div className="flex  space-x-4">
-                                        {navigation.map((item) => (
-                                            <Link to={item.to}>
-                                                <button
-                                                    key={item.name}
-                                                    className={classNames(
-                                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                        'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
-                                                    )}
-                                                    aria-current={item.current ? 'page' : undefined}
-                                                >
-                                                    {item.name}
-                                                </button></Link>
-                                        ))}
+                                        {localStorage.getItem("signedCompanyId") === null
+                                            ?
+                                            <div>
+                                                {navigation.map((item) => (
+                                                    <Link to={item.to}>
+                                                        <button
+                                                            key={item.name}
+                                                            className={classNames(
+                                                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                                'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
+                                                            )}
+                                                            aria-current={item.current ? 'page' : undefined}
+                                                        >
+                                                            {item.name}
+                                                        </button></Link>
+                                                ))}</div> : <div>
+                                                {navigationTwo.map((item) => (
+                                                    <Link to={item.to}>
+                                                        <button
+                                                            key={item.name}
+                                                            className={classNames(
+                                                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                                'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
+                                                            )}
+                                                            aria-current={item.current ? 'page' : undefined}
+                                                        >
+                                                            {item.name}
+                                                        </button></Link>
+                                                ))}</div>}
+
                                     </div>
                                 </div>
                             </div>
@@ -53,18 +86,19 @@ export default function Navbar() {
 
                                 <Menu as="div" className="relative ml-3">
                                     <div>
-                                        <Link to="/login">
-                                            <button class="flex text-sm items-center px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-cyan-300 focus:ring-opacity-100">
-                                                <span class="mx-1">Giriş</span>
-                                            </button></Link>
-                                        {/* <Menu.Button className="flex rounded-full bg-gray-800  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                            <span className="sr-only">Open user menu</span>
-                                            <img
-                                                className="h-10 w-10 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt=""
-                                            />
-                                        </Menu.Button> */}
+                                        {localStorage.getItem("signedUserId") == null ?
+                                            (<Link to="/login">
+                                                <button class="flex text-sm items-center px-4 py-2 font-medium tracking-wide text-white transition-colors duration-200 transform border-2 border-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-cyan-300 focus:ring-opacity-100">
+                                                    <span class="mx-1">Giriş</span>
+                                                </button></Link>) :
+                                            (<Menu.Button className="flex rounded-full bg-gray-800  text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                                <span className="sr-only">Open user menu</span>
+                                                <img
+                                                    className="h-10 w-10 rounded-full"
+                                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                    alt=""
+                                                />
+                                            </Menu.Button>)}
                                     </div>
                                     <Transition
                                         as={Fragment}
@@ -78,9 +112,11 @@ export default function Navbar() {
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <Link to="/userProfile">
+                                                    <Link to={{
+                                                        pathname: "/userProfile/" + localStorage.getItem("signedUserId"),
+                                                    }} >
                                                         <button
-                                                            href="#"
+
                                                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-md text-gray-700')}
                                                         >
                                                             Profilim
@@ -90,22 +126,26 @@ export default function Navbar() {
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-md text-gray-700')}
-                                                    >
-                                                        Ayarlar
-                                                    </a>
+                                                    <Link to={{
+                                                        pathname: "/userApplyJob/" + localStorage.getItem("signedUserId"),
+                                                    }} >
+                                                        <button
+
+                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-md text-gray-700')}
+                                                        >
+                                                            Başvurularım
+                                                        </button>
+                                                    </Link>
                                                 )}
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
+                                                    <button
+                                                        onClick={onLogoutClicked}
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-md text-gray-700')}
                                                     >
                                                         Çıkış Yap
-                                                    </a>
+                                                    </button>
                                                 )}
                                             </Menu.Item>
                                         </Menu.Items>
@@ -134,8 +174,9 @@ export default function Navbar() {
                         </div>
                     </Disclosure.Panel>
                 </>
-            )}
-        </Disclosure>
+            )
+            }
+        </Disclosure >
     )
 }
 

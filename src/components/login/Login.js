@@ -1,8 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaWindowClose } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
+    const [isSend, setIsSend] = useState(false);
+    let navigate = useNavigate();
+
+    const [user, setUser] = useState({
+        userMail: "",
+        userPassword: "",
+    });
+
+    const [formError, setFormError] = useState({
+        userMail: "",
+        userPassword: "",
+    });
+
+    const { userMail, userPassword } = user;
+
+    const onInputChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value });
+        setIsSend(false);
+    };
+
+    const validateFormInput = async (event) => {
+        event.preventDefault();
+        let inputError = {
+            userMail: "",
+            userPassword: "",
+        };
+
+        if (user.userPassword.length <= 3) {
+            setFormError({
+                ...inputError,
+                confirmPassword: "sifreniz yanlistir.",
+            });
+            return;
+        }
+        // var roles = response.data.roleList
+        // var addRole = []
+
+        // roles.forEach((item) => {
+        //     localStorage.setItem(item.roleName, true);
+        // })
+        setFormError(inputError);
+        // await onSubmit();
+    };
+
     return (
         <div>
             <section class="min-h-screen font-bodyFont  bg-gradient-to-r from-dark-600 via-dark-800 to-dark-900 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 ">
@@ -23,6 +67,7 @@ function Login() {
                                     <span class="mx-2 text-white truncate w-72">
                                         Türkiye - İstanbul
                                     </span>
+                                    
                                 </p>
 
                                 <p class="flex items-start -mx-2">
@@ -82,22 +127,42 @@ function Login() {
                                     <Link to="/"> <FaWindowClose class="text-xl text-white"></FaWindowClose></Link>
 
                                 </div>
-                                <form class="mt-4">
+                                <form
+                                    onSubmit={validateFormInput}
+                                    class="mt-4">
                                     <div class="flex-1">
                                         <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Adresiniz</label>
-                                        <input type="email" required placeholder="example@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                        <input
+                                            onChange={(e) => onInputChange(e)}
+                                            required
+                                            type="email"
+                                            id="userMail"
+                                            value={userMail}
+                                            name="userMail"
+                                            maxLength={30}
+                                            placeholder="example@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     </div>
 
                                     <div class="flex-1 mt-6">
                                         <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Şifreniz</label>
-                                        <input type="password" required class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                        <input
+                                            onChange={(e) => onInputChange(e)}
+                                            required
+                                            type="password"
+                                            id="userPassword"
+                                            maxLength={20}
+                                            name="userPassword"
+                                            value={userPassword}
+                                            class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     </div>
 
                                     {/* <div class="w-full mt-6">
                                     <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Message</label>
                                     <textarea class="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Message"></textarea>
                                 </div> */}
-
+                                    <p class="text-red-500 font-semibold text-base">
+                                        {formError.userPassword}
+                                    </p>
                                     <button class="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
                                         Giriş
                                     </button>
