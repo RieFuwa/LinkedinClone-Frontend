@@ -1,22 +1,22 @@
-import { CChart } from '@coreui/react-chartjs'
+import { CChart } from '@coreui/react-chartjs';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-function CompanyJobTypeCount(props) {
+function PostReportByCount() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [allJobTypeCountByCompanyId, setJobTypeCountByCompanyId] = useState([]);
+    const [allPost, setAllPost] = useState([]);
 
-    const getAllJobTypeCountCompany = () => {
+    const getAllPost = () => {
         axios
-            .get("/job/getJobTypeByCountCompany/" + localStorage.getItem("signedCompanyId"))
+            .get("/post/getAll")
             .then(function (response) {
                 return response.data;
             })
             .then(
                 (result) => {
                     setIsLoaded(true);
-                    setJobTypeCountByCompanyId(result);
+                    setAllPost(result);
                 },
                 (error) => {
                     setIsLoaded(true);
@@ -24,22 +24,20 @@ function CompanyJobTypeCount(props) {
                 }
             );
     };
-
     useEffect(() => {
-        getAllJobTypeCountCompany();
+        getAllPost();
     }, []);
-
     return (
         <div>
             <CChart
                 class=" w-72 h-72 mt-2"
                 type="doughnut"
                 data={{
-                    labels: allJobTypeCountByCompanyId?.map((key) => key.jobTypeName),
+                    labels: allPost?.map((key) => key.id),
                     datasets: [
                         {
                             backgroundColor: ['#df3398', '#f1c232', '#00D8FF', '#DD1B16'],
-                            data: allJobTypeCountByCompanyId?.map((key) => key.countTitle),
+                            data: allPost?.map((key) => key.reportList.length),
                         },
                     ],
                 }}
@@ -48,4 +46,4 @@ function CompanyJobTypeCount(props) {
     )
 }
 
-export default CompanyJobTypeCount
+export default PostReportByCount

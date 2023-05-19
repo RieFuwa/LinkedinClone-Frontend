@@ -2,6 +2,7 @@ import React from 'react'
 import Bar from '../Chart/Bar'
 import JobApplyByCountCompany from '../Chart/CompanyApplyJobCount'
 import CompanyJobTypeCount from '../Chart/CompanyJobTypeCount'
+import NotActive from '../Chart/NotActive'
 import Radar from '../Chart/Radar'
 
 
@@ -14,7 +15,7 @@ function CompanyStatistics() {
                     class="flex m-4  justify-center  hover:scale-105 rounded-xl border p-8 bg-gray-900 border-gray-800  shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
                 >
                     <div class="justify-end">
-                        <p class="text-center text-2xl mt-1">Açılan İş İlan Sayıları</p>
+                        <p class="text-center text-2xl mt-1">Açılan İş İlan Sayısı</p>
                         <CompanyJobTypeCount></CompanyJobTypeCount>
                     </div>
                 </a>
@@ -22,7 +23,7 @@ function CompanyStatistics() {
                     class="flex m-4  justify-center  hover:scale-105 rounded-xl border p-8 bg-gray-900 border-gray-800  shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
                 >
                     <div class="justify-end">
-                        <p class="text-center text-2xl">Başvuru Saysısı</p>
+                        <p class="text-center text-2xl">İlanlara Başvuru Sayısı</p>
                         <JobApplyByCountCompany></JobApplyByCountCompany>
 
                     </div>
@@ -31,8 +32,8 @@ function CompanyStatistics() {
                     class="flex m-4  justify-center  hover:scale-105 rounded-xl border p-8 bg-gray-900 border-gray-800  shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
                 >
                     <div class="justify-end">
-                        <p class="text-center text-2xl ">Bilmem ne İstatistigi</p>
-                        <CompanyJobTypeCount></CompanyJobTypeCount>
+                        <p class="text-center text-2xl ">Yakında Gelecek</p>
+                        <NotActive></NotActive>
 
                     </div>
                 </a>
@@ -40,17 +41,17 @@ function CompanyStatistics() {
                     class="flex m-4  justify-center  hover:scale-105 rounded-xl border p-8 bg-gray-900 border-gray-800  shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
                 >
                     <div class="justify-end">
-                        <p class="text-center text-2xl">Bilmem ne İstatistigi</p>
-                        <Radar></Radar>
+                        <p class="text-center text-2xl">Yakında Gelecek</p>
+                        <NotActive></NotActive>
                     </div>
                 </a>
                 <a
                     class="flex m-4  justify-center  hover:scale-105 rounded-xl border p-8 bg-gray-900 border-gray-800  shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
                 >
                     <div class="justify-end">
-                        <p class="text-center text-2xl">Bilmem ne İstatistigi</p>
-                        <br></br> <br></br>
-                        <Bar></Bar>
+                        <p class="text-center text-2xl">Yakında Gelecek</p>
+                        
+                        <NotActive></NotActive>
                     </div>
                 </a>
             </div>

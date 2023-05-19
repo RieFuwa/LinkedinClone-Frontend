@@ -10,7 +10,7 @@ function CreateJob() {
     const [createJob, setCreateJob] = useState({
         companyId: localStorage.getItem("signedCompanyId"),
         jobDetails: "",
-        jobTypeId: 1,
+        jobTypeId: 115,
     });
 
     const [formError, setFormError] = useState({

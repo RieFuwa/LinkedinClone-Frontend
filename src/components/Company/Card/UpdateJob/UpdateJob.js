@@ -90,61 +90,7 @@ function UpdateJob(props) {
                                             name="jobDetails"
                                             maxLength={250}
                                             class=" w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                    </div>
-                                    {/* <div class="flex-1 mt-2">
-                                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email</label>
-                                        <textarea
-                                            onChange={(e) => onInputChange(e)}
-                                            value={userMail}
-                                            defaultValue={userById.userMail}
-                                            type="email"
-                                            id="userMail"
-                                            name="userMail"
-                                            class="bock w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                    </div>
-                                    <div class="flex-1 mt-2">
-                                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Üniversiteniz</label>
-                                        <textarea
-                                            onChange={(e) => onInputChange(e)}
-                                            value={userUniversity}
-                                            defaultValue={userById.userUniversity}
-                                            type="email"
-                                            id="userUniversity"
-                                            name="userUniversity"
-                                            class="bock w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                    </div>
-                                    <div className='flex mt-2 gap-4 mb-2'>
-
-                                        <div class="flex-1">
-                                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Şehir</label>
-                                            <textarea
-                                                onChange={(e) => onInputChange(e)}
-                                                value={userAddress}
-                                                defaultValue={userById.userAddress}
-                                                type="text"
-                                                id="userAddress"
-                                                name="userAddress"
-                                                class=" w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                        </div>
-                                    </div>
-                                    <div class="flex-1">
-                                        <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Kariyeriniz Hakkında</label>
-                                        <textarea
-                                            onChange={(e) => onInputChange(e)}
-                                            value={userDetail}
-                                            defaultValue={userById.userDetail}
-                                            type="text"
-                                            id="userDetail"
-                                            name="userDetail"
-                                            maxLength={250}
-                                            class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
-                                    </div> */}
-
-                                    {/* <div class="w-full mt-6">
-                                            <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Message</label>
-                                            <textarea class="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Message"></textarea>
-                                        </div> */}
-
+                                    </div>                        
                                     <div className='flex mx-2 '>
                                         <button
                                             type='submit'

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import ViewJobType from '../ViewJobType/ViewJobType';
 
 function CreateJobType() {
     let navigate = useNavigate();
@@ -61,7 +62,7 @@ function CreateJobType() {
     };
 
     return (
-        <div class="flex mx-auto w-full  ml-10 overflow-hidden bg-white shadow-2xl rounded-xl dark:bg-gray-900 ">
+        <div class="flex mx-auto w-full  ml-10 overflow-hidden font-bodyFont  bg-white shadow-2xl rounded-xl dark:bg-gray-900 ">
             <div class=" w-full">
                 <h1 class="text-center mt-10 text-2xl font-bold text-green-600 sm:text-3xl lg:max-w-3xl">
                     İlan Türü Ekle
@@ -89,6 +90,7 @@ function CreateJobType() {
                         {formError.jobTypeName}
                     </p>
                     <div class="flex justify-end ">
+                        <ViewJobType></ViewJobType>
                         <button
                             type='submit'
                             class=" px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-md hover:bg-green-700  focus:outline-none focus:ring focus:ring-yellow-400"

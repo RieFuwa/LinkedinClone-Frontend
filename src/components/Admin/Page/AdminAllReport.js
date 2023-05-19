@@ -14,6 +14,7 @@ function AdminAllReport() {
     const [allReport, setAllReport] = useState([]);
 
     const getAllReport = async () => {
+        setILoadedAllReport(false)
         await axios
             .get("/report/getAll")
             .then(function (response) {
@@ -103,7 +104,7 @@ function AdminAllReport() {
                             </th>
                             <th
                                 scope="col"
-                                class="px-5 py-3   text-left text-white border-b border-gray-200"
+                                class="px-5 py-3   text-left text-white border-b border-gray-200 truncate"
                             >
                                 Şikayet Açıklaması
                             </th>

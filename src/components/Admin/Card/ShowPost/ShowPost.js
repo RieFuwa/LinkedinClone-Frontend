@@ -51,7 +51,7 @@ export default function ShowPost(props) {
                                 {/*header*/}
                                 <div className=" items-start justify-between p-5 border-b border-solid text-white border-slate-200 rounded-t">
                                     <Link to={{ pathname: "/userProfile/" + postById.userId }}>
-                                        <button class="relative block text-white text-2xl font-bodyFont bg-lime-500 w-14 h-14 rounded-full">
+                                    <button className="hidden   sm:grid sm:h-16 sm:w-16 border-2 border-white sm:shrink-0 sm:place-content-center sm:rounded-full ">
                                             {postById.userName.charAt(0).toUpperCase()}
                                             {postById.userName.charAt(1)}
                                         </button>

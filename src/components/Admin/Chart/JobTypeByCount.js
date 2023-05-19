@@ -2,21 +2,21 @@ import { CChart } from '@coreui/react-chartjs'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-function CompanyJobTypeCount(props) {
+function JobTypeByCount(props) {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [allJobTypeCountByCompanyId, setJobTypeCountByCompanyId] = useState([]);
+    const [allJobTypeCount, setJobTypeCount] = useState([]);
 
-    const getAllJobTypeCountCompany = () => {
+    const getAllJobTypeCount= () => {
         axios
-            .get("/job/getJobTypeByCountCompany/" + localStorage.getItem("signedCompanyId"))
+            .get("/job/getJobTypeByCount" )
             .then(function (response) {
                 return response.data;
             })
             .then(
                 (result) => {
                     setIsLoaded(true);
-                    setJobTypeCountByCompanyId(result);
+                    setJobTypeCount(result);
                 },
                 (error) => {
                     setIsLoaded(true);
@@ -26,7 +26,7 @@ function CompanyJobTypeCount(props) {
     };
 
     useEffect(() => {
-        getAllJobTypeCountCompany();
+        getAllJobTypeCount();
     }, []);
 
     return (
@@ -35,11 +35,11 @@ function CompanyJobTypeCount(props) {
                 class=" w-72 h-72 mt-2"
                 type="doughnut"
                 data={{
-                    labels: allJobTypeCountByCompanyId?.map((key) => key.jobTypeName),
+                    labels: allJobTypeCount?.map((key) => key.jobTypeName),
                     datasets: [
                         {
                             backgroundColor: ['#df3398', '#f1c232', '#00D8FF', '#DD1B16'],
-                            data: allJobTypeCountByCompanyId?.map((key) => key.countTitle),
+                            data: allJobTypeCount?.map((key) => key.countTitle),
                         },
                     ],
                 }}
@@ -48,4 +48,4 @@ function CompanyJobTypeCount(props) {
     )
 }
 
-export default CompanyJobTypeCount
+export default JobTypeByCount
