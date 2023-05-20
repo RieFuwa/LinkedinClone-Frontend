@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { FaInfoCircle } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import JobPostingCard from '../../Job/Card/JobPostingCard'
 import { sleep } from '../../ServiceComponent/Sleep/Sleep';
 import UpdateCompany from '../Card/UpdateCompany/UpdateCompany';
@@ -138,7 +138,9 @@ function Company() {
                         <section class=" container px-5 mx-auto ">
                             <h1 class="sm:text-7xl text-5xl mt-8 text-center  font-medium  uppercase">{companyById.companyName} </h1>
                             <div class="text-center w-full">
-                                <span class="text-center text-lg text-gray-400">{companyById.companyAddress} </span>
+                            <h2 class="text-center text-2xl my-5 text-gray-400">{companyById.companyType.companyTypeName} Şirketi </h2>
+
+                                <span class="text-center text-lg text-gray-400">{companyById.companyAddress}</span>
                                 <br></br>
                                 <span class="text-center text-lg text-gray-400"> {companyById.companyMail} </span>
                             </div>
@@ -163,8 +165,13 @@ function Company() {
                                         {isLoadedCompanyJob ? (
                                             <div class=" flex w-full text-white  mt-4">
                                                 <div class="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3">
-                                                    {companyJob.map((key, index) => (
-                                                        <JobPostingCard key={index} id={key.id} companyAddress={key.companyAddress} companyId={key.companyId} companyName={key.companyName} createDate={key.createDate} jobDetails={key.jobDetails} ></JobPostingCard>))}
+                                                    {!localStorage.getItem("signedUserId") ? <Link to={"/login"}>
+                                                        {companyJob.map((key, index) => (
+                                                            <JobPostingCard key={index} id={key.id} companyAddress={key.companyAddress} companyId={key.companyId} companyName={key.companyName} createDate={key.createDate} jobDetails={key.jobDetails} ></JobPostingCard>))}</Link> :
+                                                        <>
+                                                            {companyJob.map((key, index) => (
+                                                                <JobPostingCard key={index} id={key.id} companyAddress={key.companyAddress} companyId={key.companyId} companyName={key.companyName} createDate={key.createDate} jobDetails={key.jobDetails} ></JobPostingCard>))}</>}
+
                                                 </div>
                                             </div>) : (
                                             <div className="flex justify-center ">

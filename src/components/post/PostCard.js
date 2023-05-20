@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import CreateReport from '../Report/CreateReport';
 import ViewResponseCard from '../ResponsePost/ViewResponseCard';
-import { FaHeart, FaInfoCircle } from "react-icons/fa";
+import { FaCheckCircle, FaHeart, FaInfoCircle } from "react-icons/fa";
 import { formatDate } from "../ServiceComponent/Date/StringFormatter";
 import { Link } from "react-router-dom";
 import { sleep } from "../ServiceComponent/Sleep/Sleep";
 import axios from 'axios';
 
 function PostCard(props) {
-    const { postText, postTitle, createDate, userId, userName, connectedPostId, index, id, likeList } = props;
+    const { postText, postTitle, createDate, userId, userName, connectedPostId, index, id, likeList, isVerified } = props;
+    console.log(isVerified)
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(likeList.length);
     const [likeId, setLikeId] = useState(null);
@@ -134,12 +135,16 @@ function PostCard(props) {
                                             <ViewResponseCard likeList={likeList} userName={userName} userId={userId} id={id} postTitle={postTitle} postText={postText} createDate={createDate} connectedPostId={id}></ViewResponseCard>
                                             <CreateReport postId={id} ></CreateReport>
                                         </div>
+
                                         <p className="mt-2 text-xs font-medium text-gray-300 sm:mt-0">
                                             Gönderiyi Yazan:{" "}
+
                                             <Link to={{ pathname: "/userProfile/" + userId }}>
-                                                <a href="#" className="underline duration-100 hover:text-gray-500">
-                                                    {userName}
+
+                                                <a href="#" className=" duration-100 hover:text-gray-500">
+                                                  {userName}  {isVerified == true ? <FaCheckCircle class="flex text-lime-500 "></FaCheckCircle> : null}
                                                 </a>
+
                                             </Link>
                                         </p>
                                     </div>
@@ -150,9 +155,9 @@ function PostCard(props) {
 
                         </div>
 
-                    </div>
+                    </div >
 
-                </section>
+                </section >
 
 
             </div >

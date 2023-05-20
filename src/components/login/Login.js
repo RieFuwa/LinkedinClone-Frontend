@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { FaWindowClose } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
@@ -30,7 +31,7 @@ function Login() {
             userPassword: "",
         };
 
-        if (user.userPassword.length <= 3) {
+        if (user.userPassword.length <= 5) {
             setFormError({
                 ...inputError,
                 confirmPassword: "sifreniz yanlistir.",
@@ -44,7 +45,38 @@ function Login() {
         //     localStorage.setItem(item.roleName, true);
         // })
         setFormError(inputError);
+        await userToLogin();
+
         // await onSubmit();
+    };
+
+
+    const userToLogin = async (e) => {
+        e.preventDefault()
+        await axios.post("/user/login", user).then(
+            function (response) {
+                if (response.status === 200) {
+                    localStorage.setItem("signedUserId", response.data.userId);
+                    localStorage.setItem("signedCompanyId", response.data.companyId);
+
+                    localStorage.setItem("signedUserName", response.data.userName);
+                    setIsSend(true)
+                    var roles = response.data.roleList
+                    roles.forEach((item) => {
+                        localStorage.setItem(item.roleName, true);
+                    })
+                    navigate("/");
+                }
+            }
+        ).catch((error) => {
+            if (error.response.status === 401) {
+                return alert(error.response.data.message)
+            }
+            else {
+                return alert("Lütfen destek ile iletişime geçin.")
+            }
+        })
+
     };
 
     return (
@@ -67,7 +99,7 @@ function Login() {
                                     <span class="mx-2 text-white truncate w-72">
                                         Türkiye - İstanbul
                                     </span>
-                                    
+
                                 </p>
 
                                 <p class="flex items-start -mx-2">
@@ -128,7 +160,8 @@ function Login() {
 
                                 </div>
                                 <form
-                                    onSubmit={validateFormInput}
+                                    onSubmit={(e) => userToLogin(e)}
+
                                     class="mt-4">
                                     <div class="flex-1">
                                         <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Adresiniz</label>
@@ -163,11 +196,12 @@ function Login() {
                                     <p class="text-red-500 font-semibold text-base">
                                         {formError.userPassword}
                                     </p>
-                                    <button class="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
+                                    <button
+                                        type="submit" ƒ
+                                        class="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-700 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
                                         Giriş
                                     </button>
-                                    <Link>
-                                        <button class="mt-4 text-white">Şifrenizi mi unuttunuz? <span class="underline text-blue-600 cursor-pointer">Şifrenizi değiştirin</span> </button></Link>
+
                                     <Link to="/register">
                                         <button class="mt-4 text-white">Hesabınız yok mu ? <span class="underline text-blue-600 cursor-pointer">Kayıt olun</span> </button></Link>
                                 </form>

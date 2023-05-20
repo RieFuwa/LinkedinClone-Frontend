@@ -65,10 +65,12 @@ function Register() {
             return;
         }
         setFormError(inputError);
+       
         await onSubmit();
         await addRoleToUser();
-        navigate("/login");
+        
     };
+
     const addRoleToUser = async (e) => {
         await axios
             .post("/role/addRoleToUser", {
@@ -76,7 +78,7 @@ function Register() {
                 roleId: 1,
             })
             .then(function (response) {
-                localStorage.setItem("ROLE_USER",true)
+                localStorage.setItem("ROLE_USER", true)
                 console.log(response);
 
             })
@@ -87,13 +89,22 @@ function Register() {
 
 
     const onSubmit = async (e) => {
+
         await axios.post("/user/add", user).then(function (response) {
             localStorage.setItem("signedUserId", response.data.userId);
             localStorage.setItem("signedUserName", response.data.userName);
+            setIsSend(true);
+            navigate("/");
 
+        }).catch((error) => {
+            if (error.response.status === 409) {
+                alert(error.response.data.message)
+            }
+            else {
+                return alert("Lütfen destek ile iletişime geçin.")
+            }
+        })
 
-        });
-        setIsSend(true);
     };
     return (
         <div><section class="min-h-screen font-bodyFont  bg-gradient-to-r from-blue-600 via-blue-800 to-blue-900 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 ">

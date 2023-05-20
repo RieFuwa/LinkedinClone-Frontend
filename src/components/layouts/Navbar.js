@@ -15,6 +15,12 @@ const navigationTwo = [
     // { name: 'Bildirimler', to: '/#', current: false },
     { name: 'Şirket Paneli', to: '/companyPanel', current: false },
 ]
+const navigationThree = [
+    { name: 'Ana sayfa', to: '/', current: false },
+    { name: 'İş İlanları', to: '/jobPanel', current: false },
+    // { name: 'Bildirimler', to: '/#', current: false },
+    { name: 'Admin Paneli', to: '/adminPanel', current: false },
+]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -25,9 +31,9 @@ export default function Navbar() {
     var navigate = useNavigate();
 
     const onLogoutClicked = () => {
-        localStorage.removeItem("signedUserId");
-        localStorage.removeItem("signedUserName");
-        localStorage.removeItem("signedCompanyId");
+
+        localStorage.clear();
+
         window.location.reload();
         navigate("/");
     };
@@ -48,35 +54,63 @@ export default function Navbar() {
 
                                 <div className="hidden  sm:ml-6 sm:block">
                                     <div className="flex  space-x-4">
-                                        {localStorage.getItem("signedCompanyId") === null
+                                        {localStorage.getItem("ROLE_MANAGER") != null
                                             ?
-                                            <div>
-                                                {navigation.map((item) => (
-                                                    <Link to={item.to}>
-                                                        <button
-                                                            key={item.name}
-                                                            className={classNames(
-                                                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                                'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
-                                                            )}
-                                                            aria-current={item.current ? 'page' : undefined}
-                                                        >
-                                                            {item.name}
-                                                        </button></Link>
-                                                ))}</div> : <div>
-                                                {navigationTwo.map((item) => (
-                                                    <Link to={item.to}>
-                                                        <button
-                                                            key={item.name}
-                                                            className={classNames(
-                                                                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                                'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
-                                                            )}
-                                                            aria-current={item.current ? 'page' : undefined}
-                                                        >
-                                                            {item.name}
-                                                        </button></Link>
-                                                ))}</div>}
+                                            <>{navigationTwo.map((item) => (
+                                                <Link to={item.to}>
+                                                    <button
+                                                        key={item.name}
+                                                        className={classNames(
+                                                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                            'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
+                                                        )}
+                                                        aria-current={item.current ? 'page' : undefined}
+                                                    >
+                                                        {item.name}
+                                                    </button></Link>
+                                            ))}
+                                            </>
+
+
+                                            : <>
+
+                                                {localStorage.getItem("ROLE_ADMIN") != null ?
+                                                    <>
+                                                        {navigationThree.map((item) => (
+                                                            <Link to={item.to}>
+                                                                <button
+                                                                    key={item.name}
+                                                                    className={classNames(
+                                                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                                        'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
+                                                                    )}
+                                                                    aria-current={item.current ? 'page' : undefined}
+                                                                >
+                                                                    {item.name}
+                                                                </button></Link>
+                                                        ))}
+                                                    </> :
+                                                    <>
+
+                                                        {navigation.map((item) => (
+                                                            <Link to={item.to}>
+                                                                <button
+                                                                    key={item.name}
+                                                                    className={classNames(
+                                                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                                        'rounded-md px-3 py-2 text-xs font-medium  lg:text-sm'
+                                                                    )}
+                                                                    aria-current={item.current ? 'page' : undefined}
+                                                                >
+                                                                    {item.name}
+                                                                </button></Link>
+                                                        ))}
+                                                    </>
+                                                }
+
+
+
+                                            </>}
 
                                     </div>
                                 </div>

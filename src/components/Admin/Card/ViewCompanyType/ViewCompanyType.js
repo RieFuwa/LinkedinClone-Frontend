@@ -40,7 +40,7 @@ export default function ViewCompanyType(props) {
     return (
         <>
             <button
-            type='button'
+                type='button'
                 onClick={() => setShowModal(true)}
                 class=" px-6 py-3 text-sm font-medium tracking-wide mr-1 text-white capitalize transition-colors duration-300 transform bg-pink-600 rounded-md hover:bg-pink-700  focus:outline-none focus:ring focus:ring-yellow-400"
             >
@@ -73,7 +73,7 @@ export default function ViewCompanyType(props) {
                                 <div className=" ">
                                     <div class="font-bodyFont mx-20">
                                         {allCompanyType.map((key, index) => (
-                                         <CompanyTypeTable companyTypeName={key.companyTypeName} id={key.id} getAllJobType={getAllCompanyType} ></CompanyTypeTable>
+                                            <CompanyTypeTable companyTypeName={key.companyTypeName} id={key.id} getAllJobType={getAllCompanyType} ></CompanyTypeTable>
                                         ))}
 
                                     </div>

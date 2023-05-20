@@ -4,7 +4,7 @@ import { formatDate } from '../../ServiceComponent/Date/StringFormatter';
 import ViewResponseCard from '../../ResponsePost/ViewResponseCard';
 
 function JobPostingCard(props) {
-    const { companyName, createDate, jobDetails, id, companyId, companyAddress} = props;
+    const { companyName, createDate, jobDetails, id, companyId, companyAddress,jobTypeName, jobTypeId} = props;
     return (
 
         <div className="m-2  ">
@@ -13,6 +13,7 @@ function JobPostingCard(props) {
             >
                 <h3 class="text-3xl font-bold text-white sm:text-5xl">{companyName} </h3>
                 <p className='text-gray-500 mt-1 text-sm'>{companyAddress} - {formatDate(createDate)} </p>
+                <p className='text-gray-500 text-sm'>{jobTypeName} </p>
                 <p className="mt-4 text-sm  text-gray-300 truncate">
                     {jobDetails}
                 </p>

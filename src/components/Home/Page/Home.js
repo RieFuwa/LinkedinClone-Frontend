@@ -46,7 +46,7 @@ function Home() {
                         <div class=" ">
                             <div className="flex-grow w-full mx-auto ">
                                 {post.map((key, index) => (
-                                    <PostCard id={key.id} userName={key.userName} key={index} userId={key.userId} postTitle={key.postTitle} postText={key.postText} createDate={key.createDate} connectedPostId={key.connectedPostId} likeList={key.likeList}></PostCard>))}
+                                    <PostCard id={key.id} userName={key.userName} key={index} userId={key.userId} postTitle={key.postTitle} postText={key.postText} createDate={key.createDate} connectedPostId={key.connectedPostId} likeList={key.likeList} isVerified={key.isVerified}></PostCard>))}
                             </div></div>
 
                         :
@@ -65,7 +65,7 @@ function Home() {
                         <div class=" ">
                             <div className="flex-grow w-full mx-auto ">
                                 {post.map((key, index) => (
-                                    <PostCard id={key.id} userName={key.userName} key={index} userId={key.userId} postTitle={key.postTitle} postText={key.postText} createDate={key.createDate} connectedPostId={key.connectedPostId} likeList={key.likeList}></PostCard>))}
+                                    <PostCard id={key.id} userName={key.userName} key={index} userId={key.userId} postTitle={key.postTitle} postText={key.postText} createDate={key.createDate} connectedPostId={key.connectedPostId} likeList={key.likeList} isVerified={key.isVerified}></PostCard>))}
                             </div></div>
 
                         :

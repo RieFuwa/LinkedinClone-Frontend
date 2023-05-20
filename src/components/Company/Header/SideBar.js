@@ -1,8 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function SideBar() {
+    let navigate = useNavigate();
 
+    const onLogoutClicked = async () => {
+        localStorage.clear();
+
+        navigate("/");
+        window.location.reload();
+    };
     return (
         <div>
             <aside class="flex flex-col  w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
@@ -77,7 +84,7 @@ function SideBar() {
 
                     <div class="mt-6">
                         <div class="p-3 bg-gray-100 rounded-lg dark:bg-gray-800">
-                            <h2 class="text-sm font-medium text-gray-800 dark:text-white">New feature availabel!</h2>
+                            <h2 class="text-sm font-medium text-gray-800 dark:text-white">Yeni Güncellemelerden Haberdar Ol! </h2>
 
                             <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus harum officia eligendi velit.</p>
 
@@ -87,14 +94,14 @@ function SideBar() {
                         <div class="flex items-center justify-between mt-6">
                             <a class="flex items-center gap-x-2">
                                 <img class="object-cover rounded-full h-7 w-7" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&h=634&q=80" alt="avatar" />
-                                <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Bedirhan</span>
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-200">{localStorage.getItem("signedUserName")} </span>
                             </a>
 
-                            <a class="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400">
+                            <button onClick={onLogoutClicked} class="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-pink-500 dark:hover:text-pink-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                 </svg>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

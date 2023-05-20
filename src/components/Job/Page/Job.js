@@ -3,19 +3,41 @@ import JobPostingCard from '../Card/JobPostingCard'
 import axios from 'axios';
 import { FaInfoCircle } from 'react-icons/fa';
 import { sleep } from '../../ServiceComponent/Sleep/Sleep';
+import { Link } from 'react-router-dom';
 
 function Job() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [job, setJob] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const [searchByJobType, setSearchByJobType] = useState("0");
+
+    const [isLoadedJobType, setIsLoadedJobType] = useState(false);
+    const [AlljobType, setAllJobType] = useState([]);
 
     let inputHandler = (e) => {
         var lowerCase = e.target.value.toLowerCase();
         setSearchText(lowerCase);
 
     };
+    const getAllJobType = async () => {
+        await axios
+            .get("/jobType/getAll")
+            .then(function (response) {
+                return response.data;
+            })
+            .then(
+                async (result) => {
 
+                    setIsLoadedJobType(true);
+                    setAllJobType(result);
+                },
+                (error) => {
+                    setIsLoadedJobType(true);
+                    setError(error);
+                }
+            );
+    };
 
     const getAllJob = () => {
         axios
@@ -36,8 +58,14 @@ function Job() {
             );
     };
 
+    const onInputChange = (e) => {
+        setSearchByJobType(e.target.value)
+
+    };
+
     useEffect(() => {
         getAllJob();
+        getAllJobType();
     }, []);
 
 
@@ -68,56 +96,118 @@ function Job() {
                             <input value={searchText} onChange={inputHandler} type="text" class="w-full py-1.5 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Adrese Göre Ara" />
                         </div>
                         <div class="relative mx-3 w-96 sm:w40 ">
+
                             <select
-                                // value={title.postTypeId}
-                                // id={title.postTypeId}
-                                // onChange={(e) => onInputChange(e)}
+                                defaultValue={"115"}
+                                onChange={(e) => onInputChange(e)}
                                 class="w-full py-1.5 pl-10 pr-4  appearance-none text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-                                // name="postTypeId"
+                                name="jobTypeId"
                                 placeholder="baslik turu seciniz"
-                                required
                             >
-                                <option selected>İlan Türüne göre</option>
-                                <option value={1}>spor</option>
-                                <option value={2}>siyaset</option>
-                                <option value={3}>tarih</option>
-                                <option value={4}>ekonomi</option>
-                                <option value={5}>müzik</option>
-                                <option value={6}>teknoloji</option>
+                                <option value={"0"} > Hepsi</option>
+
+                                {AlljobType.map((key, index) => (
+                                    <>
+                                        <option value={key.id} key={index} > {key.jobTypeName} </option>
+                                    </>
+                                ))}
+
                             </select>
+
                         </div>
                     </div>
+                    {!localStorage.getItem("signedUserId") ? <Link to={"/login"}>
+                        {isLoaded ? (
 
-                    {isLoaded ? (
+                            <div class=" flex w-full text-white  mt-4">
+                                <div class="grid grid-cols-3 w-full sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3">
 
-                        <div class=" flex w-full text-white  mt-4">
-                            <div class="grid grid-cols-3 w-full sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3">
-                                
-                               
-                                {job
-                                    .filter((key) => {
-                                        if (searchText === "") {
-                                            return job;
-                                        }
-                                        if (
-                                            (key.companyAddress || "")
-                                                .toLowerCase()
-                                                .includes(searchText.toLowerCase())
-                                        ) {
-                                            return job;
-                                        }
-                                    }).
-                                    map((key, index) => (
-                                        <JobPostingCard key={index} id={key.id} companyAddress={key.companyAddress} companyId={key.companyId} companyName={key.companyName} createDate={key.createDate} jobDetails={key.jobDetails} ></JobPostingCard>))}
-                            </div>
-                        </div>) : (
-                        <div className="flex justify-center ">
-                            <div class=" absolute transform sm:m-2 lg:m-12 ">
-                                <div class="border-t-transparent  border-solid animate-spin  rounded-full border-blue-400 border-8 h-32 w-32">
+                                    {job
+                                        .filter((key) => {
+                                            if (searchText != "" && searchByJobType != "0") {
+                                                if (
+                                                    (key.companyAddress || "")
+                                                        .toLowerCase()
+                                                        .includes(searchText.toLowerCase()) && (key.jobType.id == searchByJobType)
+                                                ) {
+                                                    return job;
+                                                }
+                                            } else if (searchText == "" && searchByJobType != "0") {
+                                                if (
+                                                    (key.jobType.id == searchByJobType)
+                                                ) {
+                                                    return job;
+                                                }
+                                            } else if (searchText != "" && searchByJobType == "0") {
+                                                if (
+                                                    (key.companyAddress || "")
+                                                        .toLowerCase()
+                                                        .includes(searchText.toLowerCase())
+                                                ) {
+                                                    return job;
+                                                }
+                                            } else {
+                                                return job;
+                                            }
+                                        }).
+                                        map((key, index) => (
+                                            <JobPostingCard key={index} id={key.id} companyAddress={key.companyAddress} companyId={key.companyId} companyName={key.companyName} createDate={key.createDate} jobDetails={key.jobDetails} jobTypeName={key.jobType.jobTypeName} jobTypeId={key.jobType.id} ></JobPostingCard>))}
+                                </div>
+                            </div>) : (
+                            <div className="flex justify-center ">
+                                <div class=" absolute transform sm:m-2 lg:m-12 ">
+                                    <div class="border-t-transparent  border-solid animate-spin  rounded-full border-blue-400 border-8 h-32 w-32">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </Link> : <div>
+                        {isLoaded ? (
+
+                            <div class=" flex w-full text-white  mt-4">
+                                <div class="grid grid-cols-3 w-full sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3">
+
+
+                                    {job
+                                        .filter((key) => {
+                                            if (searchText != "" && searchByJobType != "0") {
+                                                if (
+                                                    (key.companyAddress || "")
+                                                        .toLowerCase()
+                                                        .includes(searchText.toLowerCase()) && (key.jobType.id == searchByJobType)
+                                                ) {
+                                                    return job;
+                                                }
+                                            } else if (searchText == "" && searchByJobType != "0") {
+                                                if (
+                                                    (key.jobType.id == searchByJobType)
+                                                ) {
+                                                    return job;
+                                                }
+                                            } else if (searchText != "" && searchByJobType == "0") {
+                                                if (
+                                                    (key.companyAddress || "")
+                                                        .toLowerCase()
+                                                        .includes(searchText.toLowerCase())
+                                                ) {
+                                                    return job;
+                                                }
+                                            } else {
+                                                return job;
+                                            }
+                                        }).
+                                        map((key, index) => (
+                                            <JobPostingCard key={index} id={key.id} companyAddress={key.companyAddress} companyId={key.companyId} companyName={key.companyName} createDate={key.createDate} jobDetails={key.jobDetails} jobTypeName={key.jobType.jobTypeName} jobTypeId={key.jobType.id} ></JobPostingCard>))}
+                                </div>
+                            </div>) : (
+                            <div className="flex justify-center ">
+                                <div class=" absolute transform sm:m-2 lg:m-12 ">
+                                    <div class="border-t-transparent  border-solid animate-spin  rounded-full border-blue-400 border-8 h-32 w-32">
+                                    </div>
+                                </div>
+                            </div>
+                        )}</div>}
+
 
                 </div>
             </div>

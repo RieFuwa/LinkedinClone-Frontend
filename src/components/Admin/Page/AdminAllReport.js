@@ -33,6 +33,7 @@ function AdminAllReport() {
             );
 
     };
+   
     const deletePost = async (postId) => {
         axios.delete(`/post/${postId}`).catch(function (error) {
             console.log(error);

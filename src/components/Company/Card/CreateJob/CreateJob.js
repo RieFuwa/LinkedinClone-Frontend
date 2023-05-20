@@ -1,27 +1,41 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function CreateJob() {
     let navigate = useNavigate();
     const [isSend, setIsSend] = useState(false);
     const [error, setError] = useState(null);
+    const [isLoadedJobType, setIsLoadedJobType] = useState(false);
+    const [AlljobType, setAllJobType] = useState([]);
 
     const [createJob, setCreateJob] = useState({
         companyId: localStorage.getItem("signedCompanyId"),
         jobDetails: "",
-        jobTypeId: 115,
+        jobTypeId: "115",
     });
 
     const [formError, setFormError] = useState({
         jobDetails: "",
-        companyTypeId: "",
+        jobTypeId: "",
     });
     const { userId, jobDetails, jobTypeId } = createJob;
 
+    // const onInputChange = (e) => {
+    //     setCreateJob(prevJob => ({ ...prevJob, [e.target.name]: e.target.value }));
+    //     { console.log(createJob) }
+    //     setIsSend(false);
+    // };
+
     const onInputChange = (e) => {
-        setCreateJob({ ...createJob, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setCreateJob((prevFormData) => ({
+            ...prevFormData,
+            [name]: value
+        }));
+        { console.log(createJob) }
         setIsSend(false);
+
     };
     const validateFormInput = async (event) => {
         event.preventDefault();
@@ -49,6 +63,32 @@ function CreateJob() {
         navigate("/companyPanelViewJob");
     };
 
+
+    const getAllJobType = async () => {
+        await axios
+            .get("/jobType/getAll")
+            .then(function (response) {
+                return response.data;
+            })
+            .then(
+                async (result) => {
+
+                    setIsLoadedJobType(true);
+                    setAllJobType(result);
+                },
+                (error) => {
+                    setIsLoadedJobType(true);
+                    setError(error);
+                }
+            );
+    };
+
+
+    useEffect(() => {
+        getAllJobType();
+
+    }, []);
+
     const onSubmit = async (e) => {
         await axios.post("/job/add", createJob).then(function (response) {
 
@@ -71,24 +111,21 @@ function CreateJob() {
                         onSubmit={validateFormInput}
                         class="mt-4 ">
                         <div class="relative  ">
-                            <label class="block mt-2 text-sm text-gray-600 dark:text-gray-200">Şirket Adı</label>
+                            <label class="block mt-2 text-sm text-gray-600 dark:text-gray-200">İlan Türü</label>
 
                             <select
-                                // value={title.postTypeId}
-                                // id={title.postTypeId}
-                                // onChange={(e) => onInputChange(e)}
+                                defaultValue={"115"}
+                                onChange={(e) => onInputChange(e)}
                                 class="block w-full px-5 py-3 mt-2  appearance-none text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-                                // name="postTypeId"
+                                name="jobTypeId"
                                 placeholder="baslik turu seciniz"
-                                required
                             >
-                                <option selected>İlan Türü</option>
-                                <option value={1}>spor</option>
-                                <option value={2}>siyaset</option>
-                                <option value={3}>tarih</option>
-                                <option value={4}>ekonomi</option>
-                                <option value={5}>müzik</option>
-                                <option value={6}>teknoloji</option>
+                                {AlljobType.map((key, index) => (
+                                    <>
+                                        <option value={key.id} key={index} > {key.jobTypeName} </option>
+                                    </>
+                                ))}
+
                             </select>
                         </div>
 

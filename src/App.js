@@ -46,7 +46,7 @@ function App() {
 
   const WithSideBarAdmin = () =>
   (
-    localStorage.getItem("signedUserId") != null ?
+    localStorage.getItem("ROLE_ADMIN") == ("true") ?
       <div class="flex flex-row">
         <div class=" ">
           <SideBar2></SideBar2>

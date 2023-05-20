@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 import { Link, useParams } from 'react-router-dom'
 import { sleep } from "../../ServiceComponent/Sleep/Sleep";
 import UpdateUser from "../Card/UpdateUser";
@@ -68,7 +68,7 @@ function User() {
                     <div class=" mt-44">
                         <div class="">
                             <div class=" justify-center ">
-                                
+
                                 <div class="flex">
                                     <div class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl -mt-20  inset-x-0 top-0  flex items-center justify-center ">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24" viewBox="0 0 20 20" fill="currentColor">
@@ -98,7 +98,11 @@ function User() {
                                 </div>
                             </div>
                             <div class="mt-10 text-center pb-12">
-                                <h1 class="text-4xl font-medium ">{userById.userName} <span class="font-light "></span></h1>
+                                {userById.isVerified == true ? (
+                                    <h1 class=" text-4xl font-medium ">{userById.userName}<FaCheckCircle class="text-lime-500 ml-1 w-5 align-middle flex"></FaCheckCircle> <span class="font-light "></span></h1>
+                                ) : <h1 class=" text-4xl font-medium ">{userById.userName}<span class="font-light "></span></h1>
+                                }
+
                                 <p class="font-light mt-2"> {userById.userAddress} </p>
                                 <p class="font-light mt-2"> {userById.userMail} </p>
                                 <p class="">{userById.userUniversity} </p>
