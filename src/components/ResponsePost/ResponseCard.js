@@ -65,7 +65,8 @@ function ResponseCard(props) {
                 <div class="flex items-center mt-4">
 
                     <button className="hidden  sm:grid sm:h-12 sm:w-12 border-2 border-white sm:shrink-0 sm:place-content-center sm:rounded-full ">
-                        AS
+                        {userName.charAt(0).toUpperCase()}{userName.charAt(1)}
+
                     </button>
 
                     <div class="flex flex-col justify-between ml-2">
@@ -91,7 +92,7 @@ function ResponseCard(props) {
                                 class="text-sm flex align-middle justify-end "
                                 style={isLiked ? { color: "F45050" } : { color: "A2B5BB" }}
                             />                                            </a>
-                      
+
                         {" "}  {likeCount}
                     </div>
                 </div>
