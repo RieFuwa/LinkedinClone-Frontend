@@ -1,19 +1,20 @@
 # Linkedin Clone Frontend
 ### - This is the graduation project I developed. It was built using Spring Boot, ReactJs, and PostgreSQL. The LinkedIn Clone project consists of three different interfaces: an admin panel, a user panel, and a company panel.
 ### Frontend-> ReactJS and Tailwind CSS have been used.
+## USER
 ### - Users can register after providing the required information.
 ### - Users can publish posts and follow others.
 ### - Users can respond to published posts, and if they wish, they can engage with them through likes.
 ### - Users can report posts with inaccurate content.
 ### - Users can view job listings within the application, filter them by job type and location, and apply for them.
 ### - Users can view other users' profile pages and see the posts they've published and liked.
-
+## COMPANY
 ### - Employers can register their companies after providing the required information.
 ### - Company information can be updated as needed.
 ### - After registering their company, employers are granted access to the company panel.
 ### - In the company panel, companies can create job listings as they see fit.
 ### - Companies can view and interact with job applicants for their listings, including accepting or rejecting applications and removing job listings.
-
+## ADMIN
 ### - In the admin panel, access to information and graphics, such as company details, user details, and reported posts, is available, and necessary actions can be taken.
 ### - Admins can add or remove categories such as job types and company types.
 
