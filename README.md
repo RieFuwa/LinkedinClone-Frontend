@@ -13,6 +13,9 @@
 ## Add Comment
 ![Gönderi_Olustur_HATA](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/1747b19d-4f15-4271-9abc-49f4aa6756b4)
 
+## Add Comment 2
+![Gönderi_Cevap_Olustur](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/facb735d-66a6-428b-8539-5bd6e5aa0fdc)
+
 ## User Profile
 ![Kullanıcı_Sayfası](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/13b9be4e-7e92-4e31-8312-339bdc0bd7ff)
 
