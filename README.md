@@ -1,4 +1,4 @@
-# linkedinClone Frontend
+# Linkedin Clone Frontend
 ### - This is the graduation project I developed. It was built using Spring Boot, ReactJs, and PostgreSQL. The LinkedIn Clone project consists of three different interfaces: an admin panel, a user panel, and a company panel.
 ### Frontend-> ReactJS and Tailwind CSS have been used.
 ### - Users can register after providing the required information.
