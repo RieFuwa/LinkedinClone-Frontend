@@ -1,5 +1,6 @@
 # linkedinClone Frontend
-### - ReactJS and Tailwind CSS have been used.
+### - This is the graduation project I developed. It was built using Spring Boot, ReactJs, and PostgreSQL. The LinkedIn Clone project consists of three different interfaces: an admin panel, a user panel, and a company panel.
+### Frontend-> ReactJS and Tailwind CSS have been used.
 ### - Users can register after providing the required information.
 ### - Users can publish posts and follow others.
 ### - Users can respond to published posts, and if they wish, they can engage with them through likes.
