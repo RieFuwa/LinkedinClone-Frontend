@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# linkedinClone Frontend
+### - ReactJS and Tailwind CSS have been used.
+### - Users can register after providing the required information.
+### - Users can publish posts and follow others.
+### - Users can respond to published posts, and if they wish, they can engage with them through likes.
+### - Users can report posts with inaccurate content.
+### - Users can view job listings within the application, filter them by job type and location, and apply for them.
+### - Users can view other users' profile pages and see the posts they've published and liked.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What the app looks like
+![AnaSayfa_Ekranı](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/c08b1643-08e8-4dc3-be7b-a4c684856b11)
 
-## Available Scripts
+## Add Comment
+![Gönderi_Olustur_HATA](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/1747b19d-4f15-4271-9abc-49f4aa6756b4)
 
-In the project directory, you can run:
+## User Profile
+![Kullanıcı_Sayfası](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/13b9be4e-7e92-4e31-8312-339bdc0bd7ff)
 
-### `npm start`
+## Company Profile
+![Şirket_Sayfası](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/244c85bf-f0ea-41ed-9d81-34cf802bb18e)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Job List
+![İlan_Ekranı](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/bc049591-2930-4b2a-809c-d5dd9cfa75a8)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Company Panel
+![Şirket_Panel_İlanlar](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/de124598-02da-4bcc-8073-4bcc3dd7150d)
 
-### `npm test`
+## Company Panel 2
+![Şirket_Panel_İstatistik](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/c4b057c3-92f5-4784-88ef-19c5b6150396)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Admin Panel
+![Admin_Panel](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/645a82f3-28ee-47ec-ba5d-89bb46234a14)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Login
+![Giriş_Ekranı](https://github.com/RieFuwa/LinkedinClone-Frontend/assets/71210936/59913e78-9483-4e25-b337-1caf82604c9a)
